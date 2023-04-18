@@ -1,4 +1,4 @@
-# Codes implementation(MARL)
+# Part1: Codes implementation(MARL)
 
 ## 1. Ubuntu setting
 
@@ -22,42 +22,49 @@ https://www.zhihu.com/question/418042828
 
 ##### Install nvidia driver
 
-> driver version : `470.63.01`.
->
->  CUDA version: CUDA Toolkit 11.4.
->
-> 
->
-> If your project is written with TensorFlow 1 and you need to use it with the newer versions of CUDA and NVIDIA driver that you have installed, you have a few options:
->
-> 1. Downgrade your NVIDIA driver and CUDA Toolkit versions to be compatible with TensorFlow 1. You can follow the installation instructions for TensorFlow 1.15.4 with GPU support, which requires CUDA Toolkit 10.0 or 10.1 and NVIDIA driver version 418.x or higher.
-> 2. Use a virtual environment or container with the specific versions of CUDA Toolkit, NVIDIA driver, and TensorFlow 1 that your project requires. You can create a new virtual environment or container with the appropriate dependencies using tools like virtualenv or Docker.
-> 3. Upgrade your project to use TensorFlow 2.x. Although there are some differences between TensorFlow 1 and TensorFlow 2, many of the core concepts and functionalities are similar, so the migration process may not be too difficult. You can use TensorFlow's migration guide to help you with the process.
+driver version : `470.63.01`.
+
+CUDA version: CUDA Toolkit 11.4.
+
+
+
+If your project is written with TensorFlow 1 and you need to use it with the newer versions of CUDA and NVIDIA driver that you have installed, you have a few options:
+
+1. Downgrade your NVIDIA driver and CUDA Toolkit versions to be compatible with TensorFlow 1. You can follow the installation instructions for TensorFlow 1.15.4 with GPU support, which requires CUDA Toolkit 10.0 or 10.1 and NVIDIA driver version 418.x or higher.
+2. Use a virtual environment or container with the specific versions of CUDA Toolkit, NVIDIA driver, and TensorFlow 1 that your project requires. You can create a new virtual environment or container with the appropriate dependencies using tools like virtualenv or Docker.
+3. Upgrade your project to use TensorFlow 2.x. Although there are some differences between TensorFlow 1 and TensorFlow 2, many of the core concepts and functionalities are similar, so the migration process may not be too difficult. You can use TensorFlow's migration guide to help you with the process.
 
 ​	
 
-- ```bash
-  sudo add-apt-repository ppa:graphics-drivers/ppa
-  ```
+```bash
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+sudo apt install nvidia-driver-<VERSION>
+```
 
-- ```bash
-  sudo apt update
-  sudo apt install nvidia-driver-<VERSION>
-  ```
-  
-- ```bash
-  # meet problem with unfigured nvidia driver
-  sudo apt-get remove --purge nvidia-dkms-470 nvidia-driver-470
-  ```
 
-- ```bash
-  # still doesn't work
-  dpkg -l | grep -i nvidia
-  sudo apt-get remove --purge '^nvidia-.*'
-  
-  ```
 
-##### Problem1： gpu driver -> install nvidia driver470
+##### meet problem with unfigured nvidia driver
+
+```bash
+
+sudo apt-get remove --purge nvidia-dkms-470 nvidia-driver-470
+```
+
+
+
+##### still doesn't work
+
+```bash
+
+dpkg -l | grep -i nvidia
+sudo apt-get remove --purge '^nvidia-.*'
+
+```
+
+
+
+##### Problem： gpu driver -> install nvidia driver470
 
 ```bash
 dpkg: error processing package nvidia-driver-470 (--configure):
@@ -105,7 +112,7 @@ nvcc --version
 
 ##### Install cudnn
 
-> https://developer.nvidia.com/cudnn
+- https://developer.nvidia.com/cudnn
 
 test the install of cudnn
 
@@ -198,13 +205,13 @@ mv SMAC_Maps $MAP_DIR
 
 
 
-### Project1: Mappo official implementation
+## Project1: Mappo official implementation
 
 https://github.com/magiclucky1996/on-policy
 
 
 
-### Project2: light mappo
+## Project2: light mappo
 
 https://github.com/magiclucky1996/light_mappo
 
@@ -212,7 +219,7 @@ https://github.com/magiclucky1996/light_mappo
 
 
 
-###  Project 3: Marl-sumo
+##  Project 3: Marl-sumo
 
 ##### install sumo
 
@@ -283,7 +290,7 @@ sess = tf.Session(config=config)
 
 
 
-### Modeling
+### MARL-SUMO Modeling
 
 #### Problem definition
 
@@ -401,137 +408,19 @@ reward_clip = 2.0
 
   
 
-### Project 4: General marl
+## Project 4: General marl
 
 https://github.com/magiclucky1996/MARL-code-pytorch
 
 
 
-## Deploy blog with hexo, typora,github and picgo
-
-- install nodejs
-- install hexo 
-
-```bash
-npm install -g hexo-cli
-```
-
-- create a blog
-
-```bash
-hexo init my-blog
-```
-
-- change to this blog
-
-```bash
-cd my-blog	
-```
-
-- install dependence
-
-```bash
-npm install
-```
-
-- install hexo deployer
-
-```bash
-npm install hexo-deployer --save
-```
-
-- modify the _config.yml
-
-```yaml
-url: https://<your github user name>.github.io/
-
-
-
-deploy:
-  type: git
-  repository: git@github.com:username/username.github.io.git
-  branch: master
-
-```
-
-- link local git with github so that you can push local file to github
-
-```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
-
-cat ~/.ssh/id_ed25519.pub
-```
-
-- copy this pub key to your github account: settings -> ssh and gpg keys
-- write your blogs in format of .md and add it to .../hexo/my-blog/source/_posts
-- use hexo generate to generate html files
-
-```bash
-hexo generate
-```
-
-- use hexo server to view locally 
-
-```bash
-hexo server
-```
-
-- use hexo deploy to deploy to github
-
-```bash
-hexo deploy
-```
-
-
-
-### Additional information
-
-#### Version control for blog source with multiple devices by git and github
-
-- on one computer
-
-```bash
-cd ~/hexo/my-blog/source/_posts
-git init
-git add .
-git commit -m "first commit on linux"
-git remote add origin <link of github repo>
-git push -u origin main
-```
-
-- on another computer
-
-```bash
-cd ~/hexo/my-blog/source
-git clone <link of github repo>
-git pull origin main # pull from remote repo
-git push -u origin main # pull to the remote repo
-```
-
-
-
-####  Image uploader: Picgo and typora
-
-##### reference 
-
-- https://support.typora.io/Upload-Image/
-
-- https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
-
-#####  Detailed steps
-
-- in typora
-  - click file -> preference -> image: choose download to install picgo-core
-- ``picgo set uploader``
-- ``picgo use uploader``
-- you can set automatically upload photo in typora -> preference -> image
-- it's done! enjoy!
 
 
 
 
 
-# Reading
+
+# Part 2: Reading
 
 ## Reference
 
@@ -694,7 +583,7 @@ https://www.youtube.com/watch?v=RCu-nU4_TQM
 
 
 
-# Questions
+# Part 3: Questions
 
 ### why data needs to be iid?
 
@@ -837,7 +726,7 @@ Policy gradient：不是最小化error,而是最大化V,最大化V,v直接对模
 
 
 
-## The Design of traffic problem
+### how to  Design traffic control problem
 
 fully-observed:
 
@@ -865,7 +754,7 @@ the design of action in different levels of traffic
 
 
 
-
+# Part4: what's next?
 
 ## what's next? Incorporate Mappo into sumo simulation
 
@@ -912,3 +801,130 @@ rl-training： general view
 2. 我从初始状态出发，开始我的旅行，我在单个状态是通过trail and error进行学习，我在打游戏的时候可以从一个节点重来，但可惜的是现实生活不行，但如果我们把它做成游戏一样不是很好嘛，比如在交通信号灯问题里，，一个状态的试错学习，多试试遥杆，其实控制也是，因为我们没法计算，但是我们可以计算和感觉相结合。连续单状态地更新模型有什么好处？不知道，
 
 ## play with envs(different envs and different libs)
+
+
+
+
+
+# Part5: Additional information
+
+### Deploy blog with hexo, typora,github and picgo
+
+- install nodejs
+- install hexo 
+
+```bash
+npm install -g hexo-cli
+```
+
+- create a blog
+
+```bash
+hexo init my-blog
+```
+
+- change to this blog
+
+```bash
+cd my-blog	
+```
+
+- install dependence
+
+```bash
+npm install
+```
+
+- install hexo deployer
+
+```bash
+npm install hexo-deployer --save
+```
+
+- modify the _config.yml
+
+```yaml
+url: https://<your github user name>.github.io/
+
+
+
+deploy:
+  type: git
+  repository: git@github.com:username/username.github.io.git
+  branch: master
+
+```
+
+- link local git with github so that you can push local file to github
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+cat ~/.ssh/id_ed25519.pub
+```
+
+- copy this pub key to your github account: settings -> ssh and gpg keys
+- write your blogs in format of .md and add it to .../hexo/my-blog/source/_posts
+- use hexo generate to generate html files
+
+```bash
+hexo generate
+```
+
+- use hexo server to view locally 
+
+```bash
+hexo server
+```
+
+- use hexo deploy to deploy to github
+
+```bash
+hexo deploy
+```
+
+
+
+
+
+#### Version control for blog source with multiple devices by git and github
+
+- on one computer
+
+```bash
+cd ~/hexo/my-blog/source/_posts
+git init
+git add .
+git commit -m "first commit on linux"
+git remote add origin <link of github repo>
+git push -u origin main
+```
+
+- on another computer
+
+```bash
+cd ~/hexo/my-blog/source
+git clone <link of github repo>
+git pull origin main # pull from remote repo
+git push -u origin main # pull to the remote repo
+```
+
+
+
+####  Image uploader: Picgo and typora
+
+##### reference 
+
+- https://support.typora.io/Upload-Image/
+
+- https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
+
+#####  Detailed steps
+
+- in typora
+  - click file -> preference -> image: choose download to install picgo-core
+- ``picgo set uploader``
+- ``picgo use uploader``
+- you can set automatically upload photo in typora -> preference -> image
+- it's done! enjoy!
+
