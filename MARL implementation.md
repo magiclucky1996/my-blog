@@ -2,7 +2,7 @@
 
 ## 1. Ubuntu setting
 
-##### Install oh my zsh
+### Install oh my zsh
 
 ```bash
 sudo apt-get install zsh
@@ -12,15 +12,13 @@ source ~/.zshrc
 
 ```
 
-##### setting of input method of ubuntu
+### setting of input method of ubuntu
 
 https://www.zhihu.com/question/418042828
 
 
 
- 
-
-##### Install nvidia driver
+### Install nvidia driver
 
 driver version : `470.63.01`.
 
@@ -44,7 +42,7 @@ sudo apt install nvidia-driver-<VERSION>
 
 
 
-##### meet problem with unfigured nvidia driver
+### meet problem with unfigured nvidia driver
 
 ```bash
 
@@ -53,7 +51,7 @@ sudo apt-get remove --purge nvidia-dkms-470 nvidia-driver-470
 
 
 
-##### still doesn't work
+### still doesn't work
 
 ```bash
 
@@ -64,7 +62,7 @@ sudo apt-get remove --purge '^nvidia-.*'
 
 
 
-##### Problem： gpu driver -> install nvidia driver470
+### Problem： gpu driver -> install nvidia driver470
 
 ```bash
 dpkg: error processing package nvidia-driver-470 (--configure):
@@ -89,7 +87,7 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 
 
 
-##### Uninstall old Cuda
+### Uninstall old Cuda
 
 ```bash
 cd /usr/local/cuda/bin
@@ -100,7 +98,7 @@ cd /usr/local/cuda/bin
 
 
 
-##### Install Cuda11.4
+### Install Cuda11.4
 
 ```bash
 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda_11.4.3_470.82.01_linux.run
@@ -115,6 +113,14 @@ nvcc --version
 - https://developer.nvidia.com/cudnn
 
 test the install of cudnn
+
+***
+
+
+
+
+
+
 
 
 
@@ -203,218 +209,15 @@ mv SMAC_Maps $MAP_DIR
 
 
 
+***
 
 
-## Project1: Mappo official implementation
 
-https://github.com/magiclucky1996/on-policy
 
 
 
-## Project2: light mappo
 
-https://github.com/magiclucky1996/light_mappo
 
-
-
-
-
-##  Project 3: Marl-sumo
-
-https://github.com/magiclucky1996/deeprl_signal_control
-
-
-
-#### install sumo
-
-```bash
-sudo add-apt-repository ppa:sumo/stable
-sudo apt-get update
-sudo apt-get install sumo sumo-tools sumo-doc
-
-```
-
-
-
-
-
-#### Problem1: with sumo cannot find local schema
-
-- warning
-
-```bash
-Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/additional_file.xsd', will try website lookup.
-Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/routes_file.xsd', will try website lookup.
-Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/net_file.xsd', will try website lookup.
-```
-
-- solution
-
-change sumo version:turn to sumo 1.16, 
-
-#### Problem2: not using gpu
-
-- solution
-
-reinstall all the staff related to gpu
-
-after install driver, cuda, if they are set the right env variable?: this may cause not working, so now im running with cpu, i show reinstall and do a test.
-
-#### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 
-
-1. modify the code 
-
-Replace all `import tensorflow as tf` statements with `import tensorflow.compat.v1 as tf` followed by `tf.disable_v2_behavior()`.
-
-Replace all deprecated TensorFlow 1.x syntax with TensorFlow 2.x syntax. This includes changes to `tf.Session()` to `tf.compat.v1.Session()`, `tf.global_variables_initializer()` to `tf.compat.v1.global_variables_initializer()`, and so on.
-
-Replace `tf.contrib` modules with equivalent modules in `tf.keras` or other TensorFlow 2.x modules. For example, `tf.contrib.layers` can be replaced with `tf.keras.layers`.
-
-
-
-2. migrate following the official instruction
-
-https://www.tensorflow.org/guide/migrate
-
-
-
-#### Problem4: set the growth of gpu
-
-```python
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-sess = tf.Session(config=config)
-```
-
-
-
-
-
-
-
-
-
-### MARL-SUMO Modeling
-
-#### Problem definition
-
-
-
-
-
-
-
-#### Markov decision process modeling
-
-
-
-
-
-
-
-
-
-#### System informations
-
-
-
-``` as sdf
-system: ubuntu 22.04 LTS
-python: 3.8
-gpu: gtx 3060 laptop version
-cuda: 11.3
-cudnn: version correspongding to cuda version
-SUMO: 1.16
-tensorflow: tensorflow-gpu 1.14
-```
-
-
-
-####  bugs and problems
-
-
-
-
-
-#### Training record
-
-##### Q-leaning with 16 intersections
-
-1. 0413 morning
-
-- hyperparameter
-
-```max_grad_norm = 40
-gamma = 0.99
-lr_init = 1e-4
-lr_decay = constant
-epsilon_init = 1.0
-epsilon_min = 0.01
-epsilon_decay = linear
-epsilon_ratio = 0.5
-num_fc = 128
-num_h = 64
-batch_size = 20
-buffer_size = 1000
-reward_norm = 3000.0
-reward_clip = 2.0
-```
-
-- experiment time:  13h
-
-- experiment result:
-
-  
-
-##### ![iqld](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/iqld.png)
-
-1. 0413 morning
-
-- hyperparater
-
-  ```
-  [MODEL_CONFIG]
-  rmsp_alpha = 0.99
-  rmsp_epsilon = 1e-5
-  max_grad_norm = 40
-  gamma = 0.99
-  lr_init = 5e-4
-  lr_decay = constant
-  entropy_coef_init = 0.01
-  entropy_coef_min = 0.01
-  entropy_decay = constant
-  entropy_ratio = 0.5
-  value_coef = 0.5
-  num_fw = 128
-  num_ft = 32
-  num_lstm = 64
-  num_fp = 64
-  batch_size = 120
-  reward_norm = 2000.0
-  reward_clip = 2.0
-  ```
-
-- result
-
-  ![ac413](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/ac413.png)
-
-- sac run before
-
-  
-
-  ![ac](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/ac.png)
-
-  
-
-  
-
-  
-
-  
-
-## Project 4: General marl
-
-https://github.com/magiclucky1996/MARL-code-pytorch
 
 
 
@@ -585,7 +388,7 @@ https://www.youtube.com/watch?v=RCu-nU4_TQM
 
 # Part 3: Questions
 
-## 1. why data needs to be iid?
+## 1. why data needs to be IId?
 
 > 可以参考分布式机器学习的一些东西，（我一直在做分布式，分布式机器学习，分布式存储）
 
@@ -697,6 +500,12 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 ## 5. Q-learning take td-error  as loss func, how about AC and PG?
 
+
+
+
+
+
+
 - **this is the leaning of td**
 
 ![image-20230418164141297](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418164141297.png)
@@ -706,6 +515,12 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 我们也可以用轨迹得到utility的估计，用u估计来控制梯度下降的多少
 
 应该是以q为更新的多少，a那个方向上更新一下
+
+
+
+
+
+
 
 - **this is the learning of PG**
 
@@ -722,7 +537,29 @@ Policy gradient：不是最小化error,而是最大化V,最大化V,v直接对模
 
 
 
-## 6. how about sampling multiple actions and update the model at the same state?
+
+
+
+
+- **overview of the algorithm**
+
+![image-20230418174000255](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418174000255.png)
+
+
+
+## 6. how about sampling multiple actions and update the model at the same state?(摇杆充分再走)
+
+
+
+因为相关性的问题？？？？
+
+
+
+
+
+
+
+
 
 
 
@@ -754,7 +591,258 @@ the design of action in different levels of traffic
 
 
 
-# Part 4: what's next?
+***
+
+
+
+# Part4: projects
+
+
+
+# Project1: Mappo official implementation
+
+https://github.com/magiclucky1996/on-policy
+
+
+
+
+
+
+
+***
+
+
+
+
+
+
+
+# Project2: light mappo
+
+https://github.com/magiclucky1996/light_mappo
+
+
+
+
+
+
+
+***
+
+
+
+
+
+
+
+#  Project 3: Marl-sumo
+
+https://github.com/magiclucky1996/deeprl_signal_control
+
+
+
+### install sumo
+
+```bash
+sudo add-apt-repository ppa:sumo/stable
+sudo apt-get update
+sudo apt-get install sumo sumo-tools sumo-doc
+
+```
+
+
+
+
+
+#### Problem1: with sumo cannot find local schema
+
+- warning
+
+```bash
+Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/additional_file.xsd', will try website lookup.
+Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/routes_file.xsd', will try website lookup.
+Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/net_file.xsd', will try website lookup.
+```
+
+- solution
+
+change sumo version:turn to sumo 1.16, 
+
+#### Problem2: not using gpu
+
+- solution
+
+reinstall all the staff related to gpu
+
+after install driver, cuda, if they are set the right env variable?: this may cause not working, so now im running with cpu, i show reinstall and do a test.
+
+#### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 
+
+1. modify the code 
+
+Replace all `import tensorflow as tf` statements with `import tensorflow.compat.v1 as tf` followed by `tf.disable_v2_behavior()`.
+
+Replace all deprecated TensorFlow 1.x syntax with TensorFlow 2.x syntax. This includes changes to `tf.Session()` to `tf.compat.v1.Session()`, `tf.global_variables_initializer()` to `tf.compat.v1.global_variables_initializer()`, and so on.
+
+Replace `tf.contrib` modules with equivalent modules in `tf.keras` or other TensorFlow 2.x modules. For example, `tf.contrib.layers` can be replaced with `tf.keras.layers`.
+
+
+
+2. migrate following the official instruction
+
+https://www.tensorflow.org/guide/migrate
+
+
+
+#### Problem4: set the growth of gpu
+
+```python
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True
+sess = tf.Session(config=config)
+```
+
+
+
+
+
+
+
+
+
+## MARL-SUMO Modeling
+
+### Problem definition
+
+
+
+
+
+
+
+### Markov decision process modeling
+
+
+
+
+
+
+
+
+
+### System informations
+
+
+
+``` as sdf
+system: ubuntu 22.04 LTS
+python: 3.8
+gpu: gtx 3060 laptop version
+cuda: 11.3
+cudnn: version correspongding to cuda version
+SUMO: 1.16
+tensorflow: tensorflow-gpu 1.14
+```
+
+
+
+###  bugs and problems
+
+
+
+
+
+## Training record
+
+##### Q-leaning with 16 intersections
+
+1. 0413 morning
+
+- hyperparameter
+
+```max_grad_norm = 40
+gamma = 0.99
+lr_init = 1e-4
+lr_decay = constant
+epsilon_init = 1.0
+epsilon_min = 0.01
+epsilon_decay = linear
+epsilon_ratio = 0.5
+num_fc = 128
+num_h = 64
+batch_size = 20
+buffer_size = 1000
+reward_norm = 3000.0
+reward_clip = 2.0
+```
+
+- experiment time:  13h
+
+- experiment result:
+
+  
+
+##### ![iqld](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/iqld.png)
+
+1. 0413 morning
+
+- hyperparater
+
+  ```
+  [MODEL_CONFIG]
+  rmsp_alpha = 0.99
+  rmsp_epsilon = 1e-5
+  max_grad_norm = 40
+  gamma = 0.99
+  lr_init = 5e-4
+  lr_decay = constant
+  entropy_coef_init = 0.01
+  entropy_coef_min = 0.01
+  entropy_decay = constant
+  entropy_ratio = 0.5
+  value_coef = 0.5
+  num_fw = 128
+  num_ft = 32
+  num_lstm = 64
+  num_fp = 64
+  batch_size = 120
+  reward_norm = 2000.0
+  reward_clip = 2.0
+  ```
+
+- result
+
+  ![ac413](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/ac413.png)
+
+- sac run before
+
+  
+
+  ![ac](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/ac.png)
+
+  
+
+  
+
+  
+
+  
+
+# Project 4: General marl
+
+https://github.com/magiclucky1996/MARL-code-pytorch
+
+
+
+
+
+
+
+***
+
+
+
+# Part 5: what's next?
 
 ## 1. what's next? Incorporate Mappo into sumo simulation
 
@@ -806,7 +894,27 @@ rl-training： general view
 
 
 
-# Part5: Additional information
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+
+
+# Part6 : Additional information
 
 ## 1. Deploy blog with hexo, typora,github and picgo
 
