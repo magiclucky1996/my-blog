@@ -118,7 +118,7 @@ test the install of cudnn
 
 
 
-### MARL env setting
+## 2. MARL env setting
 
 #### 1. install StarCraft II env
 
@@ -160,7 +160,7 @@ mv SMAC_Maps $MAP_DIR
 
 
 
-##### problem1  wandb.init
+##### Problem1  wandb.init
 
 	run = wandb.init(config=all_args,
 	                 project=all_args.env_name,
@@ -221,7 +221,11 @@ https://github.com/magiclucky1996/light_mappo
 
 ##  Project 3: Marl-sumo
 
-##### install sumo
+https://github.com/magiclucky1996/deeprl_signal_control
+
+
+
+#### install sumo
 
 ```bash
 sudo add-apt-repository ppa:sumo/stable
@@ -234,7 +238,7 @@ sudo apt-get install sumo sumo-tools sumo-doc
 
 
 
-##### Problem1: with sumo cannot find local schema
+#### Problem1: with sumo cannot find local schema
 
 - warning
 
@@ -248,7 +252,7 @@ Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/net_file.xsd', w
 
 change sumo version:turn to sumo 1.16, 
 
-##### Problem2: not using gpu
+#### Problem2: not using gpu
 
 - solution
 
@@ -256,7 +260,7 @@ reinstall all the staff related to gpu
 
 after install driver, cuda, if they are set the right env variable?: this may cause not working, so now im running with cpu, i show reinstall and do a test.
 
-##### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 
+#### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 
 
 1. modify the code 
 
@@ -274,7 +278,7 @@ https://www.tensorflow.org/guide/migrate
 
 
 
-##### Problem4: set the growth of gpu
+#### Problem4: set the growth of gpu
 
 ```python
 config = tf.ConfigProto()
@@ -312,7 +316,7 @@ sess = tf.Session(config=config)
 
 #### System informations
 
-https://github.com/magiclucky1996/deeprl_signal_control
+
 
 ``` as sdf
 system: ubuntu 22.04 LTS
@@ -444,7 +448,7 @@ https://github.com/LantaoYu/MARL-Papers
 
 
 
-### Playing Atari with Deep Reinforcement Learning
+### 1. Playing Atari with Deep Reinforcement Learning
 
 为什么需要样本是独立的，独立同分布到底是什么意思
 
@@ -452,15 +456,11 @@ https://github.com/LantaoYu/MARL-Papers
 
 
 
-### Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks
+### 2. Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks
 
 https://arxiv.org/abs/2006.07869
 
-> June 2020
->
-> Georgios Papoudakis, 
->
-> Phd student, School of Informatics, university of Edinburgh, 
+*June 2020  ; Georgios Papoudakis ； Phd student, ；School of Informatics ； university of Edinburgh,*
 
 - experiment results serving as reference
 - insights regarding the effectiveness of different learning approaches
@@ -533,7 +533,7 @@ https://arxiv.org/abs/2006.07869
 
 
 
-### Rainbow: Combining Improvements in Deep Reinforcement Learning
+### 3. Rainbow: Combining Improvements in Deep Reinforcement Learning
 
 https://arxiv.org/abs/1710.02298
 
@@ -549,7 +549,7 @@ https://arxiv.org/abs/1710.02298
 
 ## Books
 
-### RLbook by sutton\\\
+### 1. RLbook by sutton\\\
 
 
 
@@ -561,7 +561,7 @@ https://arxiv.org/abs/1710.02298
 
 ## Videos
 
-### Multi-Agent Reinforcement Learning (Part I)
+### 1. Multi-Agent Reinforcement Learning (Part I)
 
 https://www.youtube.com/watch?v=RCu-nU4_TQM
 
@@ -569,7 +569,7 @@ https://www.youtube.com/watch?v=RCu-nU4_TQM
 
 
 
-### Shusen wang
+### 2. Shusen wang
 
 
 
@@ -585,7 +585,7 @@ https://www.youtube.com/watch?v=RCu-nU4_TQM
 
 # Part 3: Questions
 
-### why data needs to be iid?
+## 1. why data needs to be iid?
 
 > 可以参考分布式机器学习的一些东西，（我一直在做分布式，分布式机器学习，分布式存储）
 
@@ -636,7 +636,7 @@ Choose a card from a standard deck of cards containing 52 cards, then place the 
 
 
 
-### 为什么机器学习需要iid?
+## 2. 为什么机器学习需要iid?
 
 Machine learning uses currently acquired massive quantities of data to deliver faster, more accurate results.[[7\]](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables#cite_note-7) Therefore, we need to use historical data with overall representativeness. If the data obtained is not representative of the overall situation, then the rules will be summarized badly or wrongly.
 
@@ -671,7 +671,7 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
-### why experience replay
+## 3. why experience replay
 
 > https://www.youtube.com/watch?v=rhslMPmj7SY&list=RDCMUC9qKcEgXHPFP2-ywYoA-E0Q&index=6
 
@@ -679,7 +679,7 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
-### how about sampling efficiency?
+## 4. how about sampling efficiency?
 
 那么采样效率是什么意思呢：sampling efficiency：就是说
 
@@ -695,7 +695,7 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
-### Q-learning take td-error  as loss func, how about AC and PG?
+## 5. Q-learning take td-error  as loss func, how about AC and PG?
 
 - **this is the leaning of td**
 
@@ -722,11 +722,11 @@ Policy gradient：不是最小化error,而是最大化V,最大化V,v直接对模
 
 
 
-### how about sampling multiple actions and update the model at the same state?
+## 6. how about sampling multiple actions and update the model at the same state?
 
 
 
-### how to  Design traffic control problem
+## 7. how to  Design traffic control problem
 
 fully-observed:
 
@@ -754,9 +754,9 @@ the design of action in different levels of traffic
 
 
 
-# Part4: what's next?
+# Part 4: what's next?
 
-## what's next? Incorporate Mappo into sumo simulation
+## 1. what's next? Incorporate Mappo into sumo simulation
 
 
 
@@ -765,19 +765,19 @@ the design of action in different levels of traffic
 
 
 
-## what's next? go through rl basics
+## 2. what's next? go through rl basics
 
 
 
 
 
-## what's next? go through markov modeling
+## 3. what's next? go through markov modeling
 
 
 
 
 
-##  what's next? go through urban traffic modeling and control
+##  4. what's next? go through urban traffic modeling and control
 
 
 
@@ -800,7 +800,7 @@ rl-training： general view
 1. 环境初始化，得到一个初始状态（每次都一样对不对，这个初始出发的学习路线可能会不一样，）
 2. 我从初始状态出发，开始我的旅行，我在单个状态是通过trail and error进行学习，我在打游戏的时候可以从一个节点重来，但可惜的是现实生活不行，但如果我们把它做成游戏一样不是很好嘛，比如在交通信号灯问题里，，一个状态的试错学习，多试试遥杆，其实控制也是，因为我们没法计算，但是我们可以计算和感觉相结合。连续单状态地更新模型有什么好处？不知道，
 
-## play with envs(different envs and different libs)
+## 5. play with envs(different envs and different libs)
 
 
 
@@ -808,7 +808,7 @@ rl-training： general view
 
 # Part5: Additional information
 
-### Deploy blog with hexo, typora,github and picgo
+## 1. Deploy blog with hexo, typora,github and picgo
 
 - install nodejs
 - install hexo 
@@ -887,7 +887,7 @@ hexo deploy
 
 
 
-#### Version control for blog source with multiple devices by git and github
+## 2. Version control for blog source with multiple devices by git and github
 
 - on one computer
 
@@ -911,7 +911,7 @@ git push -u origin main # pull to the remote repo
 
 
 
-####  Image uploader: Picgo and typora
+##  3. Image uploader: Picgo and typora
 
 ##### reference 
 
