@@ -340,11 +340,35 @@ https://arxiv.org/abs/2006.07869
 
 https://arxiv.org/abs/1710.02298
 
-> Oct 2017
->
-> Matteo Hessel
->
-> Deepmind
+*Oct 2017*
+
+*Matteo Hessel*
+
+*Deepmind*
+
+
+
+### 4. The Surprising Effectiveness of PPO in Cooperative Multi-Agent Games
+
+https://arxiv.org/abs/2103.01955
+
+*Nov 2022*
+
+*chao yu*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -439,7 +463,7 @@ Choose a card from a standard deck of cards containing 52 cards, then place the 
 
 
 
-## 2. 为什么机器学习需要iid?
+## 2. why machine learning need IID?
 
 Machine learning uses currently acquired massive quantities of data to deliver faster, more accurate results.[[7\]](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables#cite_note-7) Therefore, we need to use historical data with overall representativeness. If the data obtained is not representative of the overall situation, then the rules will be summarized badly or wrongly.
 
@@ -460,21 +484,21 @@ For two reasons, this hypothesis is easy to use the central limit theorem in pra
 
 
 
-有的人照片都是猫，有的人手机照片全是狗，有的人都是
+some user has photo full of animals, some user has photo full of views
 
-iid：独立同分布：数据是均匀的，随机打乱的，每个节点的统计量都差不多（均值，方差）
+iid：
 
-如果数据打乱，shuffle,数据就成为独立同分布，相当于一个节点，一个集合内的分布
+Independent and identically distributed: the data is uniform, randomly disrupted, and the statistics of each node are similar (mean, variance)
 
-每个手机用户的数据统计性质不同，有人喜欢拍风景，有人喜欢自拍，
+If the data is disrupted, shuffle, the data becomes independent and identically distributed, which is equivalent to a node, a distribution within a set
 
-我的理解：防止数据学歪？均匀的上山，不要左一下右一下？
+The statistical nature of each mobile phone user's data is different. Some people like to take pictures of landscapes, while others like to take selfies.
 
-如果experience replay
+My understanding: to prevent crooked data science? Go up the hill evenly, don't click left and right?
 
 
 
-## 3. why experience replay
+## 3. why Experience replay
 
 > https://www.youtube.com/watch?v=rhslMPmj7SY&list=RDCMUC9qKcEgXHPFP2-ywYoA-E0Q&index=6
 
@@ -482,11 +506,6 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
-## 4. how about sampling efficiency?
-
-那么采样效率是什么意思呢：sampling efficiency：就是说
-
-数据负载不平衡：有的用户几百张照片，有的基本没有，有的节点已经迭代几百此，有的才一次
 
 
 
@@ -495,26 +514,48 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
+## 4. the reuse of experience in experience replay
 
-
-
-## 5. Q-learning take td-error  as loss func, how about AC and PG?
-
-
+first thing: how is transition used?
 
 
 
 
+
+each experience is a sampling of the real world,
+
+if we want to reuse it , why not 
+
+
+
+
+
+
+
+## 5. what is sampling efficiency in rl?
+
+what is meaning of sampling efficiency：
+
+sampling efficiency：
+
+unbalance load, the amount of some user's data is large, others are small so that some node has iterated hundreds of time, some just one time
+
+
+
+
+
+
+
+
+
+
+
+## 5. Q-learning take Td-error  as loss func, how about AC and PG?
 
 - **this is the leaning of td**
 
 ![image-20230418164141297](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418164141297.png)
 
-当前stake一个a,会得到一个r,这里我们用r来学习q,用q得到u,用u来控制梯度下降的多少
-
-我们也可以用轨迹得到utility的估计，用u估计来控制梯度下降的多少
-
-应该是以q为更新的多少，a那个方向上更新一下
 
 
 
@@ -522,18 +563,51 @@ iid：独立同分布：数据是均匀的，随机打乱的，每个节点的�
 
 
 
-- **this is the learning of PG**
 
-Policy gradient：不是最小化error,而是最大化V,最大化V,v直接对模型参数求导数，然后做梯度上升更新模型参数最大化V,
+- **Policy Gradient**
+
+Policy gradient：Instead of minimizing TD error, it maximizes V, maximizes V, directly calculates the derivative of the model parameters on A, and then performs gradient ascent to update the model parameters to maximize V,
+
+
+
+- the update of policy in *Policy Gradient**
 
 ![image-20230418163835203](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418163835203.png)
 
+
+
+- while the v is equal to :
+
+![image-20230420102406349](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420102406349.png)
+
+- then calculate the derivative
+
+![image-20230420102508795](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420102508795.png)
+
+
+
+
+
+- use chain rule to calculate form 2
+
+![image-20230420102536383](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420102536383.png)
+
+
+
+- so the result is :
+
+
+
 ![image-20230418163957262](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418163957262.png)
 
-- for form 1 : 对离散的三个动作（联加的三个动作，分别求梯度，最后再联加）
-- for form 2: 因为是概率分布，求积分很难，所以用蒙特卡洛近似，用抽样去掉外面的期望，抽一个a,得到一个Q,算一个梯度，更新一次模型（这个方法对离散的动作同样适用）
+- for form 1 : at each state, summation over all actions, could also be replaced with MC 
+- for form 2: Hard to calculate expectation, use MC instead
 
-所以是以那个动作为正确答案，然后让模型输入尽可能接近正确答案吗，还是怎么搞，反正就iu是要提高模型在s选择a的概率，提高多少根据U来分配，但是具体是如何实现的？
+- 
+
+
+
+
 
 
 
@@ -545,13 +619,23 @@ Policy gradient：不是最小化error,而是最大化V,最大化V,v直接对模
 
 ![image-20230418174000255](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418174000255.png)
 
+**questions**
+
+- Question1: if use form 1: how to scan over all actions?
+
+- Question2: if use form 2: how to guarantee adequate sampling?
 
 
-## 6. how about sampling multiple actions and update the model at the same state?(摇杆充分再走)
 
 
 
-因为相关性的问题？？？？
+## 6. how about sampling multiple actions and update the model at the same state?(like we do enough sampling at the same state in multi-armed bandit 
+
+
+
+because of the independence of data?
+
+we know that related data and data with same distribution is harmful  
 
 
 
@@ -585,7 +669,7 @@ the design of action in different levels of traffic
 
 
 
-随机性的来源：策略的随机性+ 状态转移的随机性
+the source of random: random form the strategy; random from the state transferring of the env
 
 
 
@@ -602,6 +686,56 @@ the design of action in different levels of traffic
 # Project1: Mappo official implementation
 
 https://github.com/magiclucky1996/on-policy
+
+#### paper reading
+
+https://arxiv.org/abs/2103.01955
+
+
+
+### 
+
+
+
+
+
+
+
+#### bugs when running
+
+- RuntimeError: CUDA error: CUBLAS_STATUS_EXECUTION_FAILED when calling `cublasSgemm( handle, opa, opb, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc)`
+
+
+
+### running
+
+- first running
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1035,4 +1169,127 @@ git push -u origin main # pull to the remote repo
 - ``picgo use uploader``
 - you can set automatically upload photo in typora -> preference -> image
 - it's done! enjoy!
+
+
+
+
+
+
+
+tips:
+
+we don't need to run it by ourselves if the graph run by others is enough for our need.
+
+last hour for the modeling of marl env
+
+if have a goal or a question to figure, it will motivate , so seperate it into some detailed small questions, and motivate urself, so there will be postive feedback from exploring.
+
+basic ideas of rl -> ppo -> mappo , ...
+
+stably read some papers and incorprate into it
+
+
+
+
+
+# MARL modeling
+
+## traffic control + ma2c
+
+- problem definition
+
+![image-20230420114007282](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420114007282.png)
+
+
+
+- state space
+
+![image-20230420111112341](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420111112341.png)
+
+- action space
+
+  - phase switch
+    - 
+
+  - phase duration
+    - make decision for how long the phase last
+
+  - phase itself
+    - fixed control period
+
+
+
+- reward function 
+
+![image-20230420111340901](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420111340901.png)
+
+
+
+- training algorithm
+
+
+
+## SMAC + mappo
+
+
+
+
+
+
+
+
+
+
+
+# Rl algorithm
+
+## trpo
+
+- general view
+
+In order to solve the problem of  leaning rate being too big, the cost function is approximated in trust region, and then the optimal value is calculated 
+
+
+
+
+
+
+
+- persudo code
+
+
+
+
+
+
+
+
+
+- code
+
+
+
+
+
+
+
+
+
+## ppo
+
+- general view
+- persudo code
+- code
+
+
+
+
+
+
+
+## mappo
+
+- general view
+- persudo code
+- code
 
