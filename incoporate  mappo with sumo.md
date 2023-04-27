@@ -14,28 +14,6 @@ github
 
 1. ppo + sumo https://github.com/maxbren/Multi-Agent-Distributed-PPO-Traffc-light-control
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 2. light mappo  https://github.com/magiclucky1996/light_mappo 基于这个写一下试试
 3. q/ac + sumo https://github.com/magiclucky1996/deeprl_signal_control
 
@@ -53,7 +31,7 @@ https://ieeexplore.ieee.org/abstract/document/9549970/authors#authors 东北信�
 
 
 - insights
-  1. sumo设计的问题，如果我们设一个控制周期之后的交通流状态为reward是不是不合理，怎么样去评价智能体schedule的好坏呢，怎么去评价智能体的action改善了交通呢，我是要搞交通呢，还是要搞rl呢，还是要搞啥，，，
+  1. sumo设计的问题，如果我们设一个控制周期之后的交通流状态为reward是不是不合理，怎么样去评价智能体schedule的好坏呢，怎么去评价智能体的action改善了交通呢，我是要搞交通呢，还是要搞rl呢，还是要搞啥，
   2. 上次会议的要点：1. insight可以给硕士做，但是要具体可行 2. 做一个oncoming 会议的scheduling(rl 多智能体 交通 计算机 人工智能) 3. sumo的模型可以封装好给本科生用 4.  
 - 今天的计划（4.24）
 
@@ -109,12 +87,12 @@ make contraction between these projects
 
 生活的star：
 
-琴
+piano
 
-传统动画
+上海美术厂
 
 breaking
 
-网安
+penetration testing
 
-戒社交
+avoid social media

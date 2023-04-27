@@ -1,8 +1,10 @@
-# Trpo PPO MAPPO
+# week6 conclusion
 
-# Trpo
+# 1. Trpo PPO MAPPO
 
-#### 1. approximation
+# 1.1 Trpo
+
+**(1). Approximation**
 
 - the cost function
 
@@ -22,7 +24,7 @@
 
 
 
-- actually find the **theta** which could maximize the **J**
+- try to find the **theta** which could maximize the **J**
 - **S** follows the trajectory of steps, but are seen as stochastic sampling from the env
 - A is also sampled by the strategy Pi
 
@@ -33,7 +35,7 @@
 
 
 
-#### 2. optimization
+#### (2). optimization
 
 - in trust region, update parameter, 
 
@@ -41,23 +43,29 @@
 
 it's an optimization problem, we construct the optimization problem, then throw to optimization solver to solve it.
 
-#### 3. summary
+#### (3). pseudocode
 
 ![image-20230426120749975](/home/sky/.config/Typora/typora-user-images/image-20230426120749975.png)
 
 
 
-一轮循环，策略网络一次更新，玩一局游戏得到一个轨迹，但maximization有内层循环，优化问题求解需要多层内层循环，通常用梯度投影算法求解，
-
-- hyperparameter：第四步两个超参，梯度下降的步长，置信域的半径，
 
 
+In one cycle, the strategy network is updated each time, and one game is played to obtain a trajectory. However, in maximization, there are multiple inner cycles required by optimization problems , which are usually solved by gradient projection algorithm.
 
 
 
+- 2 hyperparameters 4 maximization: 
+  - Step size of gradient descent, 
+  - radius of confidence region
 
 
-# ppo
+
+
+
+
+
+# 1.2 PPO
 
 - PPO version 1: add constraint into cost function
 
@@ -69,15 +77,31 @@ it's an optimization problem, we construct the optimization problem, then throw 
 
 ![image-20230426123355644](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230426123355644.png)
 
+https://arxiv.org/abs/1707.06347
 
 
-# mappo
 
-blog of jinzhe
+|      | cons                                                         |
+| ---- | ------------------------------------------------------------ |
+| DQN  | 1. fails on simple problems; <br />2. poorly understood      |
+| VPG  | 1. poor data efficiency <br />2. poor robustness             |
+| trpo | 1. complicated <br />2. not compatible with noise ( like dropout)+ data sharing |
+| ppo  | 1. good data efficiency<br />2. reliable profermance<br />3. only first -order optimization |
+|      |                                                              |
+
+
+
+
+
+
+
+# 1.3 MAPPO
+
+
 
 https://jianzhnie.github.io/machine-learning-wiki/#/deep-rl/papers/Overview
 
-
+centralized critic
 
 ![../_images/MARL_cooperation_algo.png](https://raw.githubusercontent.com/magiclucky1996/picgo/main/MARL_cooperation_algo.png)
 
@@ -101,11 +125,11 @@ mappo
 
 
 
-# video of pieter abbeel
+# 2. pieter abbeel rl course
 
 https://www.youtube.com/watch?v=2GwBez0D20A&t=130s
 
-## course1 : mdp
+## 2.1 : MDP
 
 ***insight: group of robot learn faster: data sharing, more efficient sampling of the env***
 
@@ -117,12 +141,10 @@ https://www.youtube.com/watch?v=2GwBez0D20A&t=130s
 - update: in grid world,  we swap a time for all the grid , what if we use different way to swap all the states?
   - like along trajectory
   - like importance sampling
--   discount factor influence convergence: 0: faster 1: longer
+-   Discount factor influence convergence: 0: faster 1: longer
 - why it converge
 
 ![image-20230426134554214](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230426134554214.png)
-
-
 
 
 
@@ -219,7 +241,7 @@ https://www.youtube.com/watch?v=2GwBez0D20A&t=130s
 
 
 
-## course2 : q learning
+## 2.2 : Q learning
 
 **properties**
 
@@ -236,19 +258,21 @@ https://www.youtube.com/watch?v=2GwBez0D20A&t=130s
 
 
 
-paper to be download: 
+- 
 
-- playing atari with drl
-- rainbow
-- ppo
-- mappo
-- maven
+
+
+# 3. incorporate MAPPO with sumo
 
 
 
 
 
-# interact with rl algorithms
+
+
+
+
+# 4. Interact with rl algorithms
 
 
 
@@ -284,3 +308,17 @@ https://towardsdatascience.com/reinforcement-learning-and-visualisation-with-a-s
 
 when state space is large, the update of qtable will be very slow...
 
+
+
+
+
+*paper to be download:* 
+
+- *playing atari with drl* https://arxiv.org/abs/1312.5602
+- *rainbow*  https://arxiv.org/abs/1710.02298
+- *ppo* https://arxiv.org/abs/1707.06347
+- *mappo* https://arxiv.org/abs/2103.01955
+- *maven* https://arxiv.org/abs/1910.07483
+- qmix https://arxiv.org/abs/1803.11485
+- maddpg https://arxiv.org/abs/1706.02275
+- coma https://arxiv.org/abs/1705.08926
