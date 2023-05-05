@@ -1,6 +1,12 @@
+---
+title: rl_play
+date: 2023-05-05 10:19:40
+tags: work
+---
+
 # play with gym env
 
-## env1: cart pole
+## cart pole
 
 control + pid: https://blog.csdn.net/weixin_44562141/article/details/119700574
 
@@ -58,7 +64,7 @@ decay_rate = 0.0005            # Exponential decay rate for exploration prob
 
 
 
-## env2 lunar
+## lunarLand
 
 安装
 
@@ -68,6 +74,24 @@ pip install box2d-py
 
 
 
-## env3 taxi
+## taxi
 
 https://huggingface.co/learn/deep-rl-course/unit3/introduction?fw=pt
+
+
+
+
+
+
+
+
+
+## github ball game
+
+
+
+
+
+
+
+## hugging face tutorial

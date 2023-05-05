@@ -1,3 +1,49 @@
+---
+title: week8&9
+date: 2023-05-05 10:19:40
+tags: work
+---
+
+# week 8
+
+### goal of the week
+
+reading rl papers, marl papers, sutton rlbook2020
+
+
+
+
+
+### Questions:
+
+1. why q table replaced by NN, what is the discipline to represent?
+2. difference b
+3. fully explore 和 epsilon greedy
+4. why actor better than argmax
+5. 
+
+
+
+
+
+### tips
+
+- fully explore
+
+This approach is called pure exploration and exploitation (PEE) and can be used in some cases where exploration is very costly or where the environment is very simple. However, in most real-world scenarios, PEE is not an optimal approach.
+
+The problem with PEE is that the agent spends a lot of time exploring and collecting data, but not enough time exploiting that data to improve its policy. This can lead to slow learning and poor performance, especially in complex environments where there are many possible actions and states.
+
+In contrast, most RL algorithms use a balance between exploration and exploitation, where the agent takes actions that are likely to yield high rewards based on its current policy while also occasionally exploring new actions or states. This allows the agent to learn quickly while still exploring new possibilities, leading to faster learning and better performance.
+
+Furthermore, in many RL problems, the environment is dynamic and can change over time. In such cases, it is important for the agent to continuously explore and adapt to changes in the environment to maintain optimal performance. This requires a balance between exploration and exploitation, as well as the ability to update the policy based on new data and experiences.
+
+In summary, while PEE can be a useful approach in some cases, a balanced approach between exploration and exploitation is generally more effective for most RL problems.
+
+
+
+
+
 # incoporate  mappo with sumo
 
 ## 1. look for existing mappo + sumo

@@ -1,6 +1,12 @@
-# Part1: Codes implementation(MARL)
+---
+title: week4&5
+date: 2023-05-05 10:19:40
+tags: work
+---
 
-## 1. Ubuntu setting
+# week 4&5
+
+## 1. Ubuntu setting(安装ubuntu系统)
 
 ### Install oh my zsh
 
@@ -18,21 +24,26 @@ https://www.zhihu.com/question/418042828
 
 
 
-### Install nvidia driver
+### Install nvidia driver（安装英伟达驱动）
 
 driver version : `470.63.01`.
 
-CUDA version: CUDA Toolkit 11.4.
+CUDA version: CUDA Toolkit 11.4. （the highest version that 470 can support, if want to install newest version of CUDA(11.8), need to install higher version of driver( open the software update of ubuntu system)）
 
 
 
-If your project is written with TensorFlow 1 and you need to use it with the newer versions of CUDA and NVIDIA driver that you have installed, you have a few options:
+If project is written with **TensorFlow 1**, which not support by your CUDA and NVIDIA driver, options:
 
-1. Downgrade your NVIDIA driver and CUDA Toolkit versions to be compatible with TensorFlow 1. You can follow the installation instructions for TensorFlow 1.15.4 with GPU support, which requires CUDA Toolkit 10.0 or 10.1 and NVIDIA driver version 418.x or higher.
-2. Use a virtual environment or container with the specific versions of CUDA Toolkit, NVIDIA driver, and TensorFlow 1 that your project requires. You can create a new virtual environment or container with the appropriate dependencies using tools like virtualenv or Docker.
-3. Upgrade your project to use TensorFlow 2.x. Although there are some differences between TensorFlow 1 and TensorFlow 2, many of the core concepts and functionalities are similar, so the migration process may not be too difficult. You can use TensorFlow's migration guide to help you with the process.
+1. **Downgrade your NVIDIA driver and CUDA Toolkit** versions to be compatible with TensorFlow 
+   1. 1. You can follow the installation instructions for TensorFlow 1.15.4 with GPU support, which requires CUDA Toolkit 10.0 or 10.1 and NVIDIA driver version 418.x or higher.
 
-​	
+2. Use a **virtual environment or container** with the specific versions of CUDA Toolkit, NVIDIA driver, and TensorFlow 1 that your project requires. You can create a new virtual environment or container with the appropriate dependencies using tools like virtualenv or Docker.
+3. **Upgrade your project to use TensorFlow 2.x**. Although there are some differences between TensorFlow 1 and TensorFlow 2, many of the core concepts and functionalities are similar, so the migration process may not be too difficult. You can use TensorFlow's migration guide to help you with the process.
+
+for me, what is helpful is :
+
+1.  **update the code** to tf2 version
+2. run code with **old version tf1 and use cpu**
 
 ```bash
 sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -42,7 +53,7 @@ sudo apt install nvidia-driver-<VERSION>
 
 
 
-### meet problem with unfigured nvidia driver
+### meet problem with unfigured nvidia driver(遇到驱动的问题)
 
 ```bash
 
@@ -51,7 +62,7 @@ sudo apt-get remove --purge nvidia-dkms-470 nvidia-driver-470
 
 
 
-### still doesn't work
+### still doesn't work（继续遇到驱动问题）
 
 ```bash
 
@@ -62,7 +73,7 @@ sudo apt-get remove --purge '^nvidia-.*'
 
 
 
-### Problem： gpu driver -> install nvidia driver470
+### Problem： gpu driver -> install nvidia driver470（驱动安装问题）
 
 ```bash
 dpkg: error processing package nvidia-driver-470 (--configure):
@@ -81,13 +92,13 @@ Errors were encountered while processing:
 E: Sub-process /usr/bin/dpkg returned an error code (1)
 ```
 
-- solution: set in the software and update of ubuntu and reboot
+- **solution: set in the software and update of ubuntu and reboot**
 
 
 
 
 
-### Uninstall old Cuda
+### Uninstall old Cuda（卸载旧的cuda）
 
 ```bash
 cd /usr/local/cuda/bin
@@ -98,7 +109,7 @@ cd /usr/local/cuda/bin
 
 
 
-### Install Cuda11.4
+### Install Cuda11.4（安装cuda11.4）
 
 ```bash
 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda_11.4.3_470.82.01_linux.run
@@ -108,7 +119,7 @@ nvcc --version
 
 
 
-##### Install cudnn
+### Install cudnn（安装cudnn）
 
 - https://developer.nvidia.com/cudnn
 
@@ -124,11 +135,11 @@ test the install of cudnn
 
 
 
-## 2. MARL env setting
+## 2. MARL env setting（设定MARL环境）
 
-#### 1. install StarCraft II env
+### 1. install StarCraft II env（安装星级争霸）
 
-##### Reference
+#### Reference（参考）
 
 - https://github.com/magiclucky1996/on-policy
 
@@ -145,7 +156,7 @@ test the install of cudnn
 
 - https://github.com/oxwhirl/pymarl/blob/master/install_sc2.sh
 
-#####  Detailed steps
+####  Detailed steps（具体步骤）
 
 - follow the instruction of shell script below
 
@@ -166,7 +177,7 @@ mv SMAC_Maps $MAP_DIR
 
 
 
-##### Problem1  wandb.init
+#### Problem1  wandb.init（wandb报错）
 
 	run = wandb.init(config=all_args,
 	                 project=all_args.env_name,
@@ -198,7 +209,7 @@ mv SMAC_Maps $MAP_DIR
 
   - dir
 
-##### Ideas 
+##### solution（解决方案）
 
 1. wandb permission denied: modify the wandb.init 
 
@@ -215,23 +226,11 @@ mv SMAC_Maps $MAP_DIR
 
 
 
+# Reading（资料阅读）
 
+#### Reference（参考）
 
-
-
-
-
-
-
-
-
-
-
-# Part 2: Reading
-
-## Reference
-
-- **spinning up**
+- **spinning up（openai spinning up 项目）**
 
 https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html (there some recommendation of  reading here)
 
@@ -239,7 +238,7 @@ https://spinningup.openai.com/en/latest/spinningup/keypapers.html?highlight=rain
 
 https://spinningup.openai.com/en/latest/spinningup/keypapers.html?highlight=rainbow#model-free-rl
 
-- **github paper collection**
+- **github paper collection（github 多智能体论文合集）**
 
 https://github.com/LantaoYu/MARL-Papers
 
@@ -247,13 +246,17 @@ https://github.com/LantaoYu/MARL-Papers
 
 
 
-## Papers
+## Papers（论文阅读）
 
 
 
 ### 1. Playing Atari with Deep Reinforcement Learning
 
-为什么需要样本是独立的，独立同分布到底是什么意思
+*deepmind, 2013*
+
+why the data is needed to be iid, what does it mean with iid
+
+(为什么需要样本是独立的，独立同分布到底是什么意思)
 
 
 
@@ -299,38 +302,24 @@ https://arxiv.org/abs/2006.07869
 
 
 
-##### some thinking in the reading
+### insights（思考）
 
-- is there insights between different games? 不同类型的game有不同的特点
+- *不同类型的game有不同的特点* ：the character of different game is different.
 
-- 不同问题对joint action的需求不一样，这个要对问题的机理进行分析
+- *不同问题对合作的需求不同，需要对问题机理进行分析*:the need from different problem to joint action is different, need the analysis of the principle of problem.
 
-- 运行时间：有的时候时间不一定花在算法的时间上，可能花在和环境交互的时间上，不同大小的模型，更新频率步长等也会影响算法时间，需要弄清楚算法时间相关影响变量。
+- ***算法时间***：***模型大小，更新频率，步长***都会影响，需要弄清楚。
 
-  - to be explored
-  - if we used fixed algorithm, 随机性从哪里来，我能否限制随机性来对环境做比较。还是说我跑很多次，取平均值，来做比较。首先你得清楚整个训练的每个步骤和影响因素，所以要细读代码。（之后多攒一些问题可以专门地找人咨询）
+  - 如果限制随机性，那么算法效果能否完全复现，
+  - *环境探索能否不随机，按特定的规律进行探索？*
 
-- it could be interesting to try the chase and hide env
+- ***google******chase and hide env***
 
-- 做成库给人用确实是很好的工具，我想做我自己的库，但是先看看有没有已有的（我先找点库跑一跑）
+- *封装一些库自己用*
 
-- 拿到其他智能体的模型可能很难直接从模型参数得到啥，但是可以输入看 模型输出的结果，（模型的结果，到环境的演化的概率分布）
+- *多智能体share模型参数很难学习， 可以不同输入下看模型的输出用来协助决策*
 
   
-
-
-
-##### conclusion(what i learn from this passage):
-
-- 
-
-
-
-### 
-
-
-
-
 
 
 
@@ -360,21 +349,7 @@ https://arxiv.org/abs/2103.01955
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Books
+## Books（书籍阅读）
 
 ### 1. RLbook by sutton\\\
 
@@ -382,11 +357,7 @@ https://arxiv.org/abs/2103.01955
 
 
 
-
-
-
-
-## Videos
+## Videos（视频学习）
 
 ### 1. Multi-Agent Reinforcement Learning (Part I)
 
@@ -404,15 +375,9 @@ https://www.youtube.com/watch?v=RCu-nU4_TQM
 
 
 
+##  Questions（疑问）
 
-
-
-
-
-
-# Part 3: Questions
-
-## 1. why data needs to be IId?
+### 1. why data needs to be IId?（为什么数据需要独立同分布）
 
 > 可以参考分布式机器学习的一些东西，（我一直在做分布式，分布式机器学习，分布式存储）
 
@@ -463,7 +428,7 @@ Choose a card from a standard deck of cards containing 52 cards, then place the 
 
 
 
-## 2. why machine learning need IID?
+### 2. why machine learning need IID?（为什么机器学习需要数据独立同分布）
 
 Machine learning uses currently acquired massive quantities of data to deliver faster, more accurate results.[[7\]](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables#cite_note-7) Therefore, we need to use historical data with overall representativeness. If the data obtained is not representative of the overall situation, then the rules will be summarized badly or wrongly.
 
@@ -498,7 +463,7 @@ My understanding: to prevent crooked data science? Go up the hill evenly, don't 
 
 
 
-## 3. why Experience replay
+### 3. why Experience replay（为什么使用经验回放）
 
 > https://www.youtube.com/watch?v=rhslMPmj7SY&list=RDCMUC9qKcEgXHPFP2-ywYoA-E0Q&index=6
 
@@ -514,13 +479,9 @@ My understanding: to prevent crooked data science? Go up the hill evenly, don't 
 
 
 
-## 4. the reuse of experience in experience replay
+### 4. the reuse of experience in experience replay（为什么在experience replay 中重复使用经验）
 
 first thing: how is transition used?
-
-
-
-
 
 each experience is a sampling of the real world,
 
@@ -532,7 +493,7 @@ if we want to reuse it , why not
 
 
 
-## 5. what is sampling efficiency in rl?
+### 5. what is sampling efficiency in rl? （强化学习的sample efficiency代表什么）
 
 what is meaning of sampling efficiency：
 
@@ -550,7 +511,7 @@ unbalance load, the amount of some user's data is large, others are small so tha
 
 
 
-## 5. Q-learning take Td-error  as loss func, how about AC and PG?
+### 6. Q-learning take Td-error  as loss func, how about AC and PG? （policy based梯度下降的loss 函数是什么）
 
 - **this is the leaning of td**
 
@@ -564,7 +525,7 @@ unbalance load, the amount of some user's data is large, others are small so tha
 
 
 
-- **Policy Gradient**
+- **Policy Gradient**（***基于策略的方法***）
 
 Policy gradient：Instead of minimizing TD error, it maximizes V, maximizes V, directly calculates the derivative of the model parameters on A, and then performs gradient ascent to update the model parameters to maximize V,
 
@@ -603,33 +564,23 @@ Policy gradient：Instead of minimizing TD error, it maximizes V, maximizes V, d
 - for form 1 : at each state, summation over all actions, could also be replaced with MC 
 - for form 2: Hard to calculate expectation, use MC instead
 
-- 
 
 
-
-
-
-
-
-
-
-
-
-- **overview of the algorithm**
+- **overview of the algorithm*****（算法总览）***
 
 ![image-20230418174000255](https://raw.githubusercontent.com/magiclucky1996/picgo/main/test/image-20230418174000255.png)
 
-**questions**
+**questions**（***问题***）
 
-- Question1: if use form 1: how to scan over all actions?
+- ### Question1: if use form 1: how to scan over all actions?
 
-- Question2: if use form 2: how to guarantee adequate sampling?
-
-
+- ### Question2: if use form 2: how to guarantee adequate sampling?
 
 
 
-## 6. how about sampling multiple actions and update the model at the same state?(like we do enough sampling at the same state in multi-armed bandit 
+
+
+### 6. how about sampling multiple actions and update the model at the same state?(like we do enough sampling at the same state in multi-armed bandit （在一个状态重复试错学习）
 
 
 
@@ -647,31 +598,21 @@ we know that related data and data with same distribution is harmful
 
 
 
-## 7. how to  Design traffic control problem
+### 7. how to  Design traffic control problem（多智能体信号灯控制，如何合作）
 
 fully-observed:
 
-1. the action of other agents 
+1. ***the action of other agents*** 
    1. how to utilize the action of other agent
-2.  the strategy of other agents 
+2.  ***the strategy of other agents*** 
    1. how to utilized the strategy of other agents: prediction
-3. the state of other agents
-
-
+3. ***the state of other agents***
 
 the design of global reward function
 
-
-
 the design of action in different levels of traffic
 
-
-
-
-
 the source of random: random form the strategy; random from the state transferring of the env
-
-
 
 
 
@@ -679,23 +620,17 @@ the source of random: random form the strategy; random from the state transferri
 
 
 
-# Part4: projects
+# projects(强化学习项目)
 
 
 
-# Project1: Mappo official implementation
+## Project1: Mappo official implementation（mappo官方实现）
 
 https://github.com/magiclucky1996/on-policy
 
 #### paper reading
 
 https://arxiv.org/abs/2103.01955
-
-
-
-### 
-
-
 
 
 
@@ -713,36 +648,6 @@ https://arxiv.org/abs/2103.01955
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ***
 
 
@@ -751,7 +656,7 @@ https://arxiv.org/abs/2103.01955
 
 
 
-# Project2: light mappo
+## Project2: light mappo（mappo的轻量级实现）
 
 https://github.com/magiclucky1996/light_mappo
 
@@ -761,21 +666,17 @@ https://github.com/magiclucky1996/light_mappo
 
 
 
-***
 
 
 
 
-
-
-
-#  Project 3: Marl-sumo
+###  Project 3: Marl-sumo（基于多智能体强化学习的信号灯控制）
 
 https://github.com/magiclucky1996/deeprl_signal_control
 
 
 
-### install sumo
+#### install sumo（安装sumo）
 
 ```bash
 sudo add-apt-repository ppa:sumo/stable
@@ -788,7 +689,7 @@ sudo apt-get install sumo sumo-tools sumo-doc
 
 
 
-#### Problem1: with sumo cannot find local schema
+#### Problem1: with sumo cannot find local schema（问题1：sumo 找不到本地文件）
 
 - warning
 
@@ -798,11 +699,11 @@ Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/routes_file.xsd'
 Warning: Cannot read local schema '/usr/share/sumo/bin/data/xsd/net_file.xsd', will try website lookup.
 ```
 
-- solution
+- ***solution（解决方法：更改sumo版本）***
 
 change sumo version:turn to sumo 1.16, 
 
-#### Problem2: not using gpu
+#### Problem2: not using gpu（问题2： gpu未使用）
 
 - solution
 
@@ -810,9 +711,9 @@ reinstall all the staff related to gpu
 
 after install driver, cuda, if they are set the right env variable?: this may cause not working, so now im running with cpu, i show reinstall and do a test.
 
-#### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 
+#### Problem 3:  Code is written in tensorflow 1 but gpu only support tensorflow  2 （问题3：代码基于tf1）
 
-1. modify the code 
+1. ***modify the code （对代码进行手动升级）***
 
 Replace all `import tensorflow as tf` statements with `import tensorflow.compat.v1 as tf` followed by `tf.disable_v2_behavior()`.
 
@@ -822,13 +723,17 @@ Replace `tf.contrib` modules with equivalent modules in `tf.keras` or other Tens
 
 
 
-2. migrate following the official instruction
+2. ***migrate following the official instruction（使用官方脚本对代码进行升级）***
 
 https://www.tensorflow.org/guide/migrate
 
 
 
-#### Problem4: set the growth of gpu
+3. ***use tensorflow 1 and run with cpu(用tf1, 然后用cpu跑)***
+
+
+
+#### Problem4: set the growth of gpu（问题4： 限制gpu内存增长）
 
 ```python
 config = tf.ConfigProto()
@@ -844,17 +749,9 @@ sess = tf.Session(config=config)
 
 
 
-## MARL-SUMO Modeling
+### MARL-SUMO Modeling(信号灯控制问题的马尔克夫决策过程建模)
 
-### Problem definition
-
-
-
-
-
-
-
-### Markov decision process modeling
+#### Problem definition（问题定义）
 
 
 
@@ -862,9 +759,17 @@ sess = tf.Session(config=config)
 
 
 
+#### Markov decision process modeling（mdp建模）
 
 
-### System informations
+
+
+
+
+
+
+
+#### System informations（硬件信息）
 
 
 
@@ -880,15 +785,15 @@ tensorflow: tensorflow-gpu 1.14
 
 
 
-###  bugs and problems
+####  bugs and problems（遇到的bug和问题）
 
 
 
 
 
-## Training record
+## Training record（训练结果统计）
 
-##### Q-leaning with 16 intersections
+##### Q-leaning with 16 intersections（16路口-Qlearning）
 
 1. 0413 morning
 
@@ -962,7 +867,7 @@ reward_clip = 2.0
 
   
 
-# Project 4: General marl
+## Project 4: General marl(项目4： 多智能体算法实现)
 
 https://github.com/magiclucky1996/MARL-code-pytorch
 
@@ -972,13 +877,9 @@ https://github.com/magiclucky1996/MARL-code-pytorch
 
 
 
-***
+#  what's next?（下一步计划）
 
-
-
-# Part 5: what's next?
-
-## 1. what's next? Incorporate Mappo into sumo simulation
+#### 1. what's next? Incorporate Mappo into sumo simulation（mappo加到交通信号灯控制）
 
 
 
@@ -987,60 +888,28 @@ https://github.com/magiclucky1996/MARL-code-pytorch
 
 
 
-## 2. what's next? go through rl basics
+### 2. what's next? go through rl basics（了解rl的基础）
 
 
 
 
 
-## 3. what's next? go through markov modeling
+#### 3. what's next? go through markov modeling（了解马尔克夫建模的知识）
 
 
 
 
 
-##  4. what's next? go through urban traffic modeling and control
+####  4. what's next? go through urban traffic modeling and control（了解城市交通建模）
 
 
 
-每次只能解决一个问题，按重要度进行排序，我已经看够了各种理论，今天重要的是找几个算法和几个环境玩一玩，玩玩不同的环境，找出环境之间的feature，得到一些insights
+***insights***
 
 
 
-
-
-然后把ppo理解，看懂mappo，跑起来mappo
-
-
-
-明天重点就是交通环境的建模，明天晚上要弄出周四meeting的东西
-
-rl-training： general view
-
-
-
-1. 环境初始化，得到一个初始状态（每次都一样对不对，这个初始出发的学习路线可能会不一样，）
-2. 我从初始状态出发，开始我的旅行，我在单个状态是通过trail and error进行学习，我在打游戏的时候可以从一个节点重来，但可惜的是现实生活不行，但如果我们把它做成游戏一样不是很好嘛，比如在交通信号灯问题里，，一个状态的试错学习，多试试遥杆，其实控制也是，因为我们没法计算，但是我们可以计算和感觉相结合。连续单状态地更新模型有什么好处？不知道，
-
-## 5. play with envs(different envs and different libs)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. ***if the initialization of env is random, so the first state is random for every episode, will this improve sample efficiency***?*(环境初始化，初始化状态是不一样的，如果随机初始化，是否增加采样效率？)*
+2. ***what if a state is repeated for agent to do trail and error? like in a game restart from the failed node, and maybe we remember this state and initialize there in the next episode?**如果可以像游戏一样反复在一个节点重来，比如我记住复杂的那个地方，然后下个回合从那里初始化，就像打游戏，在一个关反复重开（比如在交通信号灯问题里，，一个状态的试错学习，多试几次，）*
 
 
 
@@ -1048,9 +917,9 @@ rl-training： general view
 
 
 
-# Part6 : Additional information
+## Part6 : Additional information（附加信息）
 
-## 1. Deploy blog with hexo, typora,github and picgo
+## 1. Deploy blog with hexo, typora,github and picgo（基于hexo进行博客搭建）
 
 - install nodejs
 - install hexo 
@@ -1129,7 +998,7 @@ hexo deploy
 
 
 
-## 2. Version control for blog source with multiple devices by git and github
+### 2. Version control for blog source with multiple devices by git and github（多个终端对博客内容进行版本控制）
 
 - on one computer
 
@@ -1153,7 +1022,7 @@ git push -u origin main # pull to the remote repo
 
 
 
-##  3. Image uploader: Picgo and typora
+###  3. Image uploader: Picgo and typora（图床设置）
 
 ##### reference 
 
@@ -1170,126 +1039,55 @@ git push -u origin main # pull to the remote repo
 - you can set automatically upload photo in typora -> preference -> image
 - it's done! enjoy!
 
+### ***insights***
+
+1. ***we don't need to run it by ourselves if the graph run by others is enough for our need.(别人跑过的算法我不跑**)***
+
+
+
+***2. if have a goal or a question to figure, it will motivate u , so seperate it into some detailed small questions, and motivate urself, so there will be postive feedback from exploring.(如果以疑问驱动，或者把要做的事情分解成具体的步骤，变成办公，效率会高很多)***
 
 
 
 
 
 
-tips:
 
-we don't need to run it by ourselves if the graph run by others is enough for our need.
-
-last hour for the modeling of marl env
-
-if have a goal or a question to figure, it will motivate , so seperate it into some detailed small questions, and motivate urself, so there will be postive feedback from exploring.
-
-basic ideas of rl -> ppo -> mappo , ...
-
-stably read some papers and incorprate into it
-
-
-
-
-
-# MARL modeling
+## MARL modeling（信号灯建模）
 
 ## traffic control + ma2c
 
-- problem definition		
+- problem definition		（问题定义）
 
 ![image-20230420114007282](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420114007282.png)
 
 
 
-- state space
+- **state space（状态空间）**
 
 ![image-20230420111112341](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420111112341.png)
 
-- action space
-
+- **action space（动作空间）**
   - phase switch
     - 
-
+  
   - phase duration
     - make decision for how long the phase last
-
+  
   - phase itself
     - fixed control period
 
 
 
-- reward function 
+- **reward function （奖励函数）**
 
 ![image-20230420111340901](https://raw.githubusercontent.com/magiclucky1996/picgo/main/image-20230420111340901.png)
 
 
 
-- training algorithm
-
-
-
-## SMAC + mappo
+- **training algorithm**(**训练算法**)
 
 
 
 
-
-
-
-
-
-
-
-# Rl algorithm
-
-## trpo
-
-- general view
-
-In order to solve the problem of  leaning rate being too big, the cost function is approximated in trust region, and then the optimal value is calculated 
-
-
-
-
-
-
-
-- persudo code
-
-
-
-
-
-
-
-
-
-- code
-
-
-
-
-
-
-
-
-
-## ppo
-
-- general view
-- persudo code
-- code
-
-
-
-
-
-
-
-## mappo
-
-- general view
-- persudo code
-- code
 
