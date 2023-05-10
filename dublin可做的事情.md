@@ -6,7 +6,21 @@ tags: life
 
 # dublin 可做的事情
 
-### reference
+
+
+
+
+
+
+
+
+
+
+
+
+# 爱尔兰可做的事情
+
+### Reference
 
 - love dublin：https://lovindublin.com/
 - totally dublin https://www.totallydublin.ie/
@@ -29,6 +43,10 @@ tags: life
 
 - meetup+couchsurfing 找活动
 
+- 一个探险露营，城市探索，坐火车去没去过的地方
+
+  
+  
   
 
 
@@ -39,19 +57,22 @@ tags: life
 
 ### 地点
 
+**谷歌地球提前侦察+熟人询问**
+
 - 公园： 凤凰公园 + herbert 公园
 
 - 山： dublin山 + 威克洛山
 
 - 海滩：bray + howth
-- 
+-  向北： sutton ,malahide, greystones, bray 小丘
 
 
 
 ### 组织
 
 - 教堂：church city center
-- 飞盘社团+棒球社团+meetup社团
+- 学校：飞盘社团+棒球社团+meetup社团
+- 学校： chinese group
 
 
 
@@ -65,9 +86,9 @@ tags: life
 
 
 
-#  tcd facility research
+#  Tcd facility research
 
-### reference
+### Reference
 
 - tcd  https://www.tcd.ie/
 - library https://www.tcd.ie/library/
