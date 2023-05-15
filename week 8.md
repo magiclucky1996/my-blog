@@ -20,9 +20,6 @@ reading rl papers, marl papers, sutton rlbook2020
 2. difference b
 3. fully explore 和 epsilon greedy
 4. why actor better than argmax
-5. 
-
-
 
 
 
@@ -44,7 +41,7 @@ In summary, while PEE can be a useful approach in some cases, a balanced approac
 
 
 
-# incoporate  mappo with sumo
+# Incoporate  mappo with sumo
 
 ## 1. look for existing mappo + sumo
 
@@ -113,25 +110,21 @@ make contraction between these projects
 
 
 
-
-
-## 2. make it with materials found
-
+**reading of the rlbook**
 
 
 
+how does dopamine give people motivation?
 
+if prediction is different from truth, we will have positive feedback or negative feedback?
 
-
-
-
+## 
 
 
 
 
 
-
-生活的star：
+**生活的star：**
 
 piano
 
