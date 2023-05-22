@@ -4,7 +4,33 @@ date: 2023-05-05 13:06:22
 tags: life
 ---
 
-# dublin 可做的事情
+
+# 地球可做的事情（things to do on earth）
+
+- 看我的google map 收藏
+
+- 南美马丘比丘
+- 香港
+- 西班牙
+- 瑞士采尔马特
+
+
+# 欧洲可做的事情(things to do in europe)
+
+- 按照当时申请phd的轨迹，去看看斯塔万格，林根，里斯本，巴塞罗那，米兰理工，布鲁塞尔灯火辉煌，苏黎世大学，苏黎世联邦理工
+- 去拜访朋友，伦敦，奥地利（爱在黎明破晓前，音乐之声，），土耳其（伊斯坦布尔），UAE（abduhabi），法国南部（脸庞 村庄），地中海（爱在午夜黎明前）
+- 瑞士的山，采尔马特，
+- 在爱尔兰探索secret path，探索那个小的沙滩
+
+
+
+
+# 爱尔兰可做的事情(things to do in ireland)
+
+
+
+
+# dublin 可做的事情(things to do in dublin)
 
 
 
@@ -15,10 +41,6 @@ tags: life
 
 
 
-
-
-
-# 爱尔兰可做的事情
 
 ### Reference
 
