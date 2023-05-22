@@ -7,11 +7,20 @@ tags: life
 
 # 地球可做的事情（things to do on earth）
 
-- 看我的google map 收藏
+- 学习魔法：
+  - breaking
+  - 滑板
+  - piano
+  - hacking
+
+
+
+
+- 旅行：看我的google map 收藏
 
   - 南美马丘比丘
   - 香港
-    - 西班牙
+  - 西班牙
   - 瑞士采尔马特
 
 
