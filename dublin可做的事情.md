@@ -16,7 +16,7 @@ tags: life
 
 
 
-- 旅行：看我的google map 收藏
+- 旅行：看谷歌earth， 看我的google map 收藏
 
   - 南美马丘比丘
   - 香港
